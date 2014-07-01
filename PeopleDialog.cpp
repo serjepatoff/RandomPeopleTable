@@ -67,17 +67,12 @@ void PeopleDialog::fillLayouts() {
 
 void PeopleDialog::connectSignalsToSlots() {
 	connect(this, SIGNAL(finished(int)), this, SLOT(finished(int)));
-	connect(mTableView, SIGNAL(cellClicked(int,int)), this, SLOT(cellActivated(int,int)));
 	QHeaderView *horizHeader = mTableView->horizontalHeader();
 	connect(horizHeader, SIGNAL(sectionClicked(int)), this, SLOT(sectionClicked(int)));
 	connect(mTableView, SIGNAL(customContextMenuRequested(QPoint)),SLOT(customMenuRequested(QPoint)));
 }
 
 void PeopleDialog::finished(int result) {
-}
-
-void PeopleDialog::cellActivated(int row, int col) {
-	qDebug("Cell activated");
 }
 
 void PeopleDialog::sortByColumn(int col) {

@@ -36,7 +36,6 @@ public:
 
 public slots:
 	void finished(int result);
-	void cellActivated(int row, int col);
 	void sectionClicked(int section);
 	void customMenuRequested(QPoint pos);
 	void deleteCurrentRows();
