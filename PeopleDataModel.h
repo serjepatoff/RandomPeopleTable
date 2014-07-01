@@ -13,10 +13,10 @@ private:
 	QStringList mColumnNames;
 
 private:
-	
 	bool createTable();
-	bool prepopulateTable();
+	bool populateTable(int recordCount );
 	bool initRandomData();
+	QString getInsertQueryString();
 
 public:
 	PeopleDataModel( QObject * parent, QSqlDatabase db );
@@ -25,4 +25,5 @@ public:
 	bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 	void sortByColumn( int col );
 	Qt::SortOrder getCurrentSortOrder();
+	bool addRecord();
 };

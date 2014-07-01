@@ -13,18 +13,14 @@ class PeopleDialog : public QDialog {
 
 private:
 	QLabel *mTopLabel;
-	QPushButton *mB1;
-	QPushButton *mB2;
-	QPushButton *mB3;
 	PeopleTableView *mTableView;
 	QVBoxLayout *mVLayout;
 	QHBoxLayout *mBottomBtnLayout;
 	PeopleDataModel *mDataModel;
 
 private:
-	void initHeader(const QString &headerText );
+	void initHeader();
 	void initTable();
-	void initFooter();
 	void createLayouts();
 	void fillLayouts();
 	void initDataSource();

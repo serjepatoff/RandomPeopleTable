@@ -54,7 +54,7 @@ QSqlTableModel(parent,db)
 bool PeopleDataModel::createTable() {
 	QSqlQuery qry;
     
-    QString str = 
+    QString sQuery = 
     	QString("CREATE TABLE %1 ("
 		TABLE_COL_KEY_1 " " TABLE_COL_TYPE_1 ","
 		TABLE_COL_KEY_2 " " TABLE_COL_TYPE_2 ","
@@ -64,7 +64,7 @@ bool PeopleDataModel::createTable() {
         TABLE_COL_KEY_6 " " TABLE_COL_TYPE_6 ","
         TABLE_COL_KEY_7 " " TABLE_COL_TYPE_7 ")").arg(TABLE_NAME);
     
-    bool b = qry.exec(str);
+    bool b = qry.exec(sQuery);
     if (!b) {
         return false;
     }
@@ -72,15 +72,20 @@ bool PeopleDataModel::createTable() {
     return true;
 }
 
-bool PeopleDataModel::prepopulateTable() {
+QString PeopleDataModel::getInsertQueryString() {
+	return QString( "INSERT INTO %1"
+		"(" TABLE_COL_KEY_2 "," TABLE_COL_KEY_3 "," TABLE_COL_KEY_4 "," 
+			TABLE_COL_KEY_5 "," TABLE_COL_KEY_6 "," TABLE_COL_KEY_7
+		") VALUES (?,?,?,?,?,?);").arg(TABLE_NAME);
+}
+
+bool PeopleDataModel::populateTable( int recordCount ) {
 	QSqlQuery qry;
-    
-    QString sQuery;
-    QString cc;
+    QString sQuery, cc;
     QVariantList passportNumbers, countries, names, surnames, birthdates, phones;
     RandomGenerator gen;
 
-	for ( int i=0; i<PREPOPULATE_DATA_ENTRIES; ++i ) {
+	for ( int i=0; i<recordCount; ++i ) {
 		cc = gen.getRandomCountryCode();
 		passportNumbers << gen.getRandomPassportNumber(cc);
 		countries << cc;
@@ -90,12 +95,7 @@ bool PeopleDataModel::prepopulateTable() {
 		phones << gen.getRandomPhoneNumber(cc);
 	}
 
-	sQuery = QString(
-		"INSERT INTO %1"
-		"(" TABLE_COL_KEY_2 "," TABLE_COL_KEY_3 "," TABLE_COL_KEY_4 "," 
-			TABLE_COL_KEY_5 "," TABLE_COL_KEY_6 "," TABLE_COL_KEY_7
-		") VALUES (?,?,?,?,?,?);").arg(TABLE_NAME);
-
+	sQuery = getInsertQueryString();
     bool b = qry.prepare(sQuery);
     if (!b) {
     	QMessageBox::information(0, "Error", "prepopulateTable(): Couldn't prepare query");
@@ -114,8 +114,13 @@ bool PeopleDataModel::prepopulateTable() {
     	QMessageBox::information(0, "Error", "prepopulateTable(): Couldn't exec batch query");
     	return false;
     }
-
 	return true;
+}
+
+bool PeopleDataModel::addRecord() {
+	bool bResult = populateTable(1);
+	select();
+	return bResult;
 }
 
 bool PeopleDataModel::select() {
@@ -131,7 +136,7 @@ bool PeopleDataModel::select() {
 bool PeopleDataModel::initRandomData() {
 	if ( createTable() ) {
 		QMessageBox::information(0, "Warning", "New database will be created. This may take a while...");
-		prepopulateTable();
+		populateTable(PREPOPULATE_DATA_ENTRIES);
 		return true;
 	}
 	return false;
