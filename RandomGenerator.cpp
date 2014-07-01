@@ -52,7 +52,7 @@ QString RandomGenerator::getRandomSurname() {
 		"Fox", "Fisher", "Floyd", "Foston", "Flynn",
 		"Gill", "Grant", "Garrys", "Gosling", "Griffin",
 		"Harris","Higgs","Hitler","Hayes","Howe","Howie","Harold",
-		"Irvine","Irving","Ingram","Isaacs","Ivans","Ivanopulo"
+		"Irvine","Irving","Ingram","Isaacs","Ivans","Ivanopulo",
 		"Jones","Johnson","James","Joseph","Jeffers",
 		"Kirkson","King","Keith","Kelly","Kim",
 		"Lewis","Lee","Lloyd","Lane","Lynch","Love","Lord",

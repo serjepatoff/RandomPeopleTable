@@ -2,7 +2,6 @@
 #include <QtCore>
 #include <QApplication>
 #include <QMessageBox>
-#include <unistd.h>
 #include <QFileIconProvider>
 #include "RandomGenerator.h"
 
