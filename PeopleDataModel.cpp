@@ -6,7 +6,7 @@
 #include <QFileIconProvider>
 #include "RandomGenerator.h"
 
-#define PREPOPULATE_DATA_ENTRIES 10000
+#define PREPOPULATE_DATA_ENTRIES 1000
 
 #define TABLE_NAME "people"
 
