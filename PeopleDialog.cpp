@@ -2,6 +2,8 @@
 #include <QMessageBox>
 #include <QHeaderView>
 #include <QCoreApplication>
+#include <QApplication>
+#include <QDesktopServices>
 #include <QMenu>
 
 PeopleDialog::PeopleDialog(QWidget *parent) : QDialog(parent) {
@@ -29,11 +31,11 @@ void PeopleDialog::initHeader() {
 
 void PeopleDialog::initDataSource() {
 	QSqlDatabase dbase = QSqlDatabase::addDatabase("QSQLITE");
-	QString storLoc = QCoreApplication::applicationDirPath();
-    dbase.setDatabaseName(storLoc + "/people_db.sqlite");
+	QString dbDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+    dbase.setDatabaseName(dbDir + "/people_db.sqlite");
     if (!dbase.open()) {
-        QMessageBox::information(this, "Error", "Couldn't open database!");
-        return;
+    	QMessageBox::information(this, "Error", "Couldn't reach database! Quitting app. "+dbDir+" "+dbase.lastError().text());
+        QApplication::quit();
     }
 	mDataModel = new PeopleDataModel(this, dbase);
 }

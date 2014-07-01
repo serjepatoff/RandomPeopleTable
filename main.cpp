@@ -5,6 +5,8 @@
 
 
 int main(int argc, char* argv[]) {
+	QApplication::setOrganizationName("yourcompany");
+	QApplication::setApplicationName("RandomPeopleTable");
     QApplication app(argc, argv);
     PeopleDialog *dialog = new PeopleDialog();
     dialog->show();
