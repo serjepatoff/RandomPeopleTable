@@ -1,7 +1,7 @@
 #include "PeopleDialog.h"
 #include <QMessageBox>
 #include <QHeaderView>
-#include <QDesktopServices>
+#include <QCoreApplication>
 #include <QMenu>
 
 PeopleDialog::PeopleDialog(QWidget *parent) : QDialog(parent) {
@@ -26,7 +26,7 @@ void PeopleDialog::initHeader(const QString &headerText ) {
 
 void PeopleDialog::initDataSource() {
 	QSqlDatabase dbase = QSqlDatabase::addDatabase("QSQLITE");
-	QString storLoc = QDesktopServices::storageLocation( QDesktopServices::DocumentsLocation );
+	QString storLoc = QCoreApplication::applicationDirPath();
     dbase.setDatabaseName(storLoc + "/people_db.sqlite");
     if (!dbase.open()) {
         QMessageBox::information(this, "Error", "Couldn't open database!");
