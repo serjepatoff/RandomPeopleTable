@@ -6,5 +6,6 @@ App was tested on OS X 10.9 and Windows 7 x64 with Qt 4.8.6
 
 How to build
 ------------
-
+```shell
 git clone https://github.com/serjepatoff/RandomPeopleTable; cd RandomPeopleTable; qmake; make
+```
