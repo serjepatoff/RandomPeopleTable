@@ -73,6 +73,7 @@ void PeopleDialog::connectSignalsToSlots() {
 }
 
 void PeopleDialog::finished(int result) {
+	(void)result;
 }
 
 void PeopleDialog::sortByColumn(int col) {
@@ -86,6 +87,7 @@ void PeopleDialog::sectionClicked(int section) {
 }
 
 void PeopleDialog::resizeEvent(QResizeEvent *event) {
+	(void)event;
 	mTableView->resizeColumnsToContents();
 }
 

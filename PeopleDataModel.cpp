@@ -152,6 +152,8 @@ QVariant PeopleDataModel::data ( const QModelIndex & index, int role ) const
 }
 
 bool PeopleDataModel::removeRows ( int row, int count, const QModelIndex & parent ) {
+	(void)parent;
+
 	QString sQuery;
 	int rowid;
 	QSqlQuery qry;
