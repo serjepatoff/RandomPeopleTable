@@ -4,6 +4,6 @@
 
 class PeopleTableView : public QTableView {
 public:
-	PeopleTableView(QWidget *parent);
-	QStyleOptionViewItem viewOptions() const;
+    PeopleTableView(QWidget *parent);
+    QStyleOptionViewItem viewOptions() const;
 };

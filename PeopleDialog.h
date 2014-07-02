@@ -12,31 +12,32 @@ class PeopleDialog : public QDialog {
     Q_OBJECT
 
 private:
-	QLabel *mTopLabel;
-	PeopleTableView *mTableView;
-	QVBoxLayout *mVLayout;
-	QHBoxLayout *mBottomBtnLayout;
-	PeopleDataModel *mDataModel;
+    QLabel *mTopLabel;
+    PeopleTableView *mTableView;
+    QVBoxLayout *mVLayout;
+    QHBoxLayout *mBottomBtnLayout;
+    PeopleDataModel *mDataModel;
 
 private:
-	void initHeader();
-	void initTable();
-	void createLayouts();
-	void fillLayouts();
-	void initDataSource();
-	void connectSignalsToSlots();
-	void sortByColumn( int col );
+    void initHeader();
+    void initTable();
+    void createLayouts();
+    void fillLayouts();
+    void initDataSource();
+    void connectSignalsToSlots();
+    void sortByColumn( int col );
 
 public:
     PeopleDialog(QWidget *parent = 0);
 
 public slots:
-	void finished(int result);
-	void sectionClicked(int section);
-	void customMenuRequested(QPoint pos);
-	void deleteCurrentRows();
-	void addRow();
+    void finished(int result);
+    void sectionClicked(int section);
+    void customMenuRequested(QPoint pos);
+    void deleteCurrentRows();
+    void addRow();
+    void scrollingEnded();
 
 protected:
-	virtual void resizeEvent(QResizeEvent *event);
+    virtual void resizeEvent(QResizeEvent *event);
 };
